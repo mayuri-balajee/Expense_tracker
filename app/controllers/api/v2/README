@@ -1,0 +1,33 @@
+employee and expense controller dont till invoice validation. 
+expense report works -admin can see all expenses (id 6)
+routing added 
+
+in config/environments/development.rb:
+mailer config in the last part must be updated 
+
+
+covered the following:
+This application is for employees of an organisation to record theirs expenses and claim for 
+reimbursement. 
+ 
+
+
+
+• Organization will onboard newly joined employees 
+o Employee details with department 
+o Need to maintain current employment status 
+o Terminated/separated employees should not be able to apply for reimbursement 
+• Employee to add individual expense details with supporting documents and description 
+o Get the invoice Number of the bill 
+o Expense should be detailed with date, description and amount 
+o Supporting documents like bills needs to attached 
+• Employee can create a expense report by grouping the expenses together (optional) 
+before submitting for approval 
+• Once the expense or expense report is submitted for approval, System should validate 
+the invoices through third part “Invoice Validator System”(Details of this provided below) 
+o If the invoice validation returns false, system should automatically reject the 
+expense.  
+o If the invoice validation returns true, system should capture the validation and 
+show these details for manual approval
+
+docs uploading is pending 

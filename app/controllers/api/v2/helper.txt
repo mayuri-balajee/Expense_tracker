@@ -1,0 +1,30 @@
+def create
+      expense = @employee.expenses.build(expense_params)
+      #authorize expense # Use 'expense' instead of '@expense'
+      
+        # Make POST request to external API
+        uri = URI('https://my.api.mockaroo.com/invoices.json')
+        http = Net::HTTP.new(uri.host, uri.port)
+        http.use_ssl = true # Enable SSL/TLS
+        request = Net::HTTP::Post.new(uri.path)
+        request['Content-Type'] = 'application/json'
+        request['X-API-Key'] = 'b490bb80'
+        request.body = { 'invoice_id': expense.invoice_no.to_i }.to_json
+    
+        response = http.request(request)
+        
+        if response.code == '200'
+          json_response = JSON.parse(response.body)
+          #puts "#{json_response}"
+          #puts "#{expense.invoice_no}"
+          if json_response["status"] == true
+            render json: { status: "successful"}, status: :created
+          end
+          # if expense.save
+          #   render json: expense, status: :created
+          # else
+          #   render json: { error: expense.errors.full_messages }, status: :unprocessable_entity
+          # end
+        end 
+
+e
